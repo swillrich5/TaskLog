@@ -16,6 +16,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    console.log("in tasksController.js");
+    console.log(req.body);
     db.Task
       .create(req.body)
       .then(dbModel => res.json(dbModel))

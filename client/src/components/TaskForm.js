@@ -6,6 +6,7 @@ function Taskform(props) {
     const [taskName, setTaskName] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
     const [priorityNumValue, setPriorityNumValue] = useState("");
+    const [priorityLetterValue, setPriorityLetterValue] = useState("");
 
       // Handles updating component state when the user types into the input field
     function handleTaskNameChange(event) {
@@ -26,6 +27,12 @@ function Taskform(props) {
         setPriorityNumValue(priorityNumValue);
     };
 
+    function handlePriorityLetterValueChange(event) {
+        const { name, value } = event.target;
+        console.log(event.target.value);
+        setPriorityLetterValue(priorityLetterValue);
+    };
+
     const handleFormSubmit = (event) => {
         event.preventDefault();
         console.log("In handleFormSubmit()");
@@ -43,10 +50,11 @@ function Taskform(props) {
 
 
     return (
-        <div className="col-5">
+        <div className="col-4">
             <form>
+                <h2 className="mt-3 text-center">Task Entry</h2>
                 <div className="form-group">
-                    <label for="taskName">Task</label>
+                    <label htmlFor="taskName">Task</label>
                     <input type="text" 
                            className="form-control" 
                            name={taskName} 
@@ -56,7 +64,7 @@ function Taskform(props) {
                            placeholder="Enter Task Name" />
                 </div>
                 <div className="form-group">
-                    <label for="taskDescription">Description</label>
+                    <label htmlFor="taskDescription">Description</label>
                     <textarea
                            className="form-control" 
                            name={taskDescription} 
@@ -66,17 +74,36 @@ function Taskform(props) {
                            rows="4"></textarea>
                 </div>
                 <div className="form-group">
-                    <label for="priorityNumValue">Example multiple select</label>
-                    <select className="form-control" 
-                            id="priorityNumValue" 
-                            name={priorityNumValue}
-                            onChange={handlePriorityNumValueChange}>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+
+                    <div className="row">
+                        <div className="col">
+                         <label htmlFor="priorityNumValue">Priority</label>
+                        </div>
+                        <div className="col">
+                            <select className="form-control" 
+                                id="priorityNumValue" 
+                                name={priorityLetterValue}
+                                onChange={handlePriorityLetterValueChange}>
+                                <option>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                            </select>
+                        </div>
+                        <div className="col">
+                            <select className="form-control" 
+                                id="priorityNumValue" 
+                                name={priorityNumValue}
+                                onChange={handlePriorityNumValueChange}>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+
+
                 </div>
 
                 <div>

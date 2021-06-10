@@ -24,13 +24,13 @@ function Taskform(props) {
     function handlePriorityNumValueChange(event) {
         const { name, value } = event.target;
         console.log(event.target.value);
-        setPriorityNumValue(priorityNumValue);
+        setPriorityNumValue(event.target.value);
     };
 
     function handlePriorityLetterValueChange(event) {
         const { name, value } = event.target;
         console.log(event.target.value);
-        setPriorityLetterValue(priorityLetterValue);
+        setPriorityLetterValue(event.target.value);
     };
 
     const handleFormSubmit = (event) => {
@@ -39,10 +39,18 @@ function Taskform(props) {
         if (taskName && taskDescription) {    
             API.saveTask({
                 taskName: taskName,
-                taskDescription: taskDescription 
+                taskDescription: taskDescription,
+                taskPriorityLetter: priorityLetterValue,
+                taskPriorityNum: priorityNumValue,
+                closed: 'false'
             })
                 .then(res => {
-                    console.log("Task Saved");
+                    console.log("Task Saved");            
+                    var frm = document.querySelector("#task-form");
+                    frm.submit();
+                    frm.reset();
+
+
                 })
                 .catch(err => console.log(err));
         }
@@ -51,7 +59,7 @@ function Taskform(props) {
 
     return (
         <div className="col-4">
-            <form>
+            <form id="task-form">
                 <h2 className="mt-3 text-center">Task Entry</h2>
                 <div className="form-group">
                     <label htmlFor="taskName">Task</label>
@@ -80,25 +88,27 @@ function Taskform(props) {
                          <label htmlFor="priorityNumValue">Priority</label>
                         </div>
                         <div className="col">
-                            <select className="form-control" 
+                            <select className="form-select" 
                                 id="priorityNumValue" 
-                                name={priorityLetterValue}
+                                name="priorityLetterValue"
                                 onChange={handlePriorityLetterValueChange}>
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
+                                <option ></option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
                             </select>
                         </div>
                         <div className="col">
-                            <select className="form-control" 
+                            <select className="form-select" 
                                 id="priorityNumValue" 
-                                name={priorityNumValue}
-                                onChange={handlePriorityNumValueChange}>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                name="priorityNumValue"
+                                onChange={handlePriorityNumValueChange}>                                
+                                <option></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </div>
                     </div>

@@ -24,10 +24,13 @@ function TaskList() {
 
   return (
     <div className="col-4">
-      <table className="table mt-5">
+      <table className="table table-striped mt-5">
         <tbody>
+          {/* use conditional rendering to toggle displaying closed tasks */}
           {tasks.map(task => (
                 <tr key={task._id}>
+                  <td>{task.taskPriorityLetter}</td>
+                  <td>{task.taskPriorityNum}</td>
                   <td>{task.taskName}</td>
                 </tr>
           ))}

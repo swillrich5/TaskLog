@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema({
   taskName: { type: String, required: true },
   taskDescription: { type: String },
+  taskPriorityLetter: { type: String },
+  taskPriorityNum: { type: String },
   closed: {type: Boolean},
   openDate: { type: Date, default: Date.now },
-  closedDate: { type: Date}
+  closedDate: { type: Date }
 });
 
 const Task = mongoose.model("Task", taskSchema);

@@ -29,8 +29,8 @@ function TaskList() {
           {/* use conditional rendering to toggle displaying closed tasks */}
           {tasks.map(task => (
                 <tr key={task._id}>
-                  <td>{task.taskPriorityLetter}</td>
-                  <td>{task.taskPriorityNum}</td>
+                  <td className="mx-0 pr-0">{task.taskPriorityLetter}</td>
+                  <td className="mx-0 px-0">{task.taskPriorityNum}</td>
                   <td>{task.taskName}</td>
                 </tr>
           ))}

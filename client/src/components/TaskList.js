@@ -6,6 +6,7 @@ import API from '../utils/API';
 function TaskList() {
 
   const [tasks, setTasks ] = useState([]);
+  // const [task, setTask] = useState({});
 
   // Load all books and store them with setBooks
   useEffect(() => {
@@ -21,6 +22,17 @@ function TaskList() {
       .catch(err => console.log(err));
   };
 
+  const closeTaskHandler = (event, task) => {
+    event.preventDefault();
+    task.closed = true;
+    console.log(task);
+    API.updateTask(task._id,task)
+      .then(res => {
+        console.log("Task Updated");
+      })
+      .catch(err => console.log(err));
+  }
+
 
   return (
     <div className="col-4">
@@ -32,6 +44,7 @@ function TaskList() {
                   <td className="mx-0 pr-0">{task.taskPriorityLetter}</td>
                   <td className="mx-0 px-0">{task.taskPriorityNum}</td>
                   <td>{task.taskName}</td>
+                  <td><button className="btn btn-primary btn-sm" onClick={(event)=>closeTaskHandler(event, task)}>Close</button></td>
                 </tr>
           ))}
         </tbody>

@@ -4,6 +4,7 @@ const tasksController = require("../../controllers/tasksController");
 // Matches with "/api/tasks"
 router.route("/")
   .get(tasksController.findAll)
+  .put(tasksController.update)
   .post(tasksController.create);
 
 // Matches with "/api/tasks/:id"

@@ -14,7 +14,11 @@ export default {
     return axios.delete("/api/tasks/" + id);
   },
   // Saves a book to the database
-  saveTask: function(taskData) {
-    return axios.post("/api/tasks", taskData);
+  saveTask: function(id, taskData) {
+    return axios.post("/api/tasks" + id, taskData);
+  },
+  updateTask: function(id, taskData) {
+    console.log(taskData);
+    return axios.put("/api/tasks" + id, taskData);
   }
 };
